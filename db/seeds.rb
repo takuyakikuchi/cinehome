@@ -1,7 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require "json"
+require "open-uri"
+
+url = 'http://www.omdbapi.com/?i=tt3896198&apikey=c799fbe5&s=star+wars'
+data = open(url).read
+movies = JSON.parse(data)
+
+movies["Search"].each do |movie|
+    Movie.create!(name: movie["Title"], photo: movie["Poster"], genre: "Science Fiction")
+end
+
+
+
