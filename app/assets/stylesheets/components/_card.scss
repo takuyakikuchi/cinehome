@@ -1,0 +1,50 @@
+_card.scss
+
+.cards {
+  margin-left: 1vw;
+  position: absolute;
+  width:98vw;
+  top: 20vw;
+  padding-bottom: 10vw;
+  display: inline-flex;
+  flex-wrap: wrap;
+  .card-items{
+    display: flex;
+    background-color:#A4E0BA;
+    width: 30vw;
+    height:15vw;
+    margin: 1vw;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border-radius:3px;
+    // img{
+    // padding-left:0.5vw;
+    // padding-top: 0.5vw;
+    // padding-bottom: 0.5vw;
+    // height: 90%;
+    // width: 190px;
+    // object-fit: cover;
+    // animation: slide 50s normal infinite;
+    // &:hover {
+    // transform: scale(1.1);  /*画像の拡大率*/
+    // transition-duration: 0.3s;  /*変化に掛かる時間*/
+    // }
+    // }
+    .card-descriptions{
+      padding: 1vw;
+     h3{
+      width:100%;
+      font-size: 16px;
+      font-weight: bold;
+      }
+    p{
+      font-size: 12px;
+      line-height: 1.4;
+      opacity: .7;
+      margin-bottom: 0;
+      margin-top: 8px;
+    }
+    }
+  }
+
+}
