@@ -15,6 +15,7 @@
       </div>
       <h5 class="mt-3">Hosted by :</h5>
       <div class="d-flex align-items-center my-3">
+        <%= cl_image_tag @event.user.photo, height:50, width:50, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
         <h5 class="ml-2"><%=@event.user.name.capitalize%></h5>
       </div>
     </div>
