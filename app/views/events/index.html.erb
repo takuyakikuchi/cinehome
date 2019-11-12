@@ -23,8 +23,8 @@
           <div class="card-movie-infos">
             <div>
               <h2><%= event.movie.name %></h2>
-              <p>Time: <%= event.booking_time %></p>
-              <p>Address: <%= event.address %></p>
+              <p><i class="far fa-clock mr-2"></i> <%= event.booking_time.strftime("%b %-d %Y, %H:%M") %></p>
+              <p><i class="fas fa-map-marker-alt mr-2"></i><%= event.address %></p>
             </div>
           </div>
         </div>
