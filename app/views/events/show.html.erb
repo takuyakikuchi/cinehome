@@ -6,4 +6,8 @@
 <%= @event.description %>
 <%= @event.movie.name %>
 <%= @event.movie.genre %>
+<div>
+  Number of participants: <%= @event.bookings.count %>
+</div>
+<%= link_to 'join', event_bookings_path(@event), method: :post  %>
 </div>
