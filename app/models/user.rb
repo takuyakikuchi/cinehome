@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :events, through: :bookings
   validates :name, presence: true, uniqueness: true
+  mount_uploader :photo, PhotoUploader
 end
