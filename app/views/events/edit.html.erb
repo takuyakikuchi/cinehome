@@ -1,0 +1,14 @@
+<div class="container">
+<h1 class="text-center">Edit your event</h1>
+
+<%= simple_form_for [@event] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :booking_time %>
+  <%= f.input :price %>
+  <%= f.input :description %>
+  <%= f.association :movie %>
+  <%= f.submit "Edit Event", class: "btn btn-warning", data: { confirm: "Are you sure?" } do%>
+  <% end %>
+<% end %>
+</div>
