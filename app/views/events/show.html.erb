@@ -45,9 +45,31 @@
       <% elsif @event.bookings.where(user: current_user).exists? && @event.bookings.where(booked: true).exists? %>
        <%= link_to 'Cancel', event_booking_path(@event), method: :patch, class: 'btn btn-danger px-5' %>
       <% else %>
-       <%= link_to 'Join', event_bookings_path(@event), method: :post, class:
-        'btn btn-primary px-5' %>
-      <% end %>
+      <button type="button" class="btn btn-primary px-5" data-toggle="modal" data-target="#exampleModal">
+        Join
+      </button>
+
+      <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Join Event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Thank you for join <%=@event.name.capitalize%> !
+              </div>
+              <div class="modal-footer">
+                <%= link_to 'Ok', event_bookings_path(@event), method: :post, class:
+                  'btn btn-primary px-5' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
