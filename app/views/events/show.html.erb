@@ -43,18 +43,40 @@
       <% elsif current_user == @event.user %>
        <button type="button" class="btn btn-secondary px-5" disabled>Join</button>
       <% elsif @event.bookings.where(user: current_user).exists? && @event.bookings.where(booked: true).exists? %>
-       <%= link_to 'Cancel', event_booking_path(@event), method: :patch, class: 'btn btn-danger px-5' %>
+      <button type="button" class="btn btn-danger px-5" data-toggle="modal" data-target="#cancelModal">
+        Cancel
+      </button>
+
+      <!-- Cancel Modal -->
+      <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cancelModalLabel">Cancel Event</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure to cancel <%=@event.name.capitalize%>?
+            </div>
+            <div class="modal-footer">
+              <%= link_to 'Sure', event_booking_path(@event), method: :patch, class: 'btn btn-danger px-5' %>
+            </div>
+          </div>
+        </div>
+      </div>
       <% else %>
-      <button type="button" class="btn btn-primary px-5" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-primary px-5" data-toggle="modal" data-target="#joinModal">
         Join
       </button>
 
-      <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- Join Modal -->
+        <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Join Event</h5>
+                <h5 class="modal-title" id="joinModalLabel">Join Event</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
