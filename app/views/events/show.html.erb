@@ -40,7 +40,7 @@
       <% if user_signed_in? == false  %>
         <%= link_to 'Join', new_user_registration_path, class:
         'btn btn-primary px-5' %>
-      <% elsif current_user == @event.user || @join.include?(current_user)  %>
+      <% elsif current_user == @event.user || @event.bookings.where(user: current_user).exists?  %>
        <button type="button" class="btn btn-secondary px-5" disabled>Join</button>
       <% else %>
        <%= link_to 'Join', event_bookings_path(@event), method: :post, class:

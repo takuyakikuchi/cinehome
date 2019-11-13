@@ -7,9 +7,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @join = @event.bookings.map do |booking|
-      booking.user
-    end
   end
 
   def new
