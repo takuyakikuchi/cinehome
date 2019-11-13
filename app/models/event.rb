@@ -9,4 +9,8 @@ class Event < ApplicationRecord
   validates :booking_time, presence: true
   validates :price, presence: true
   validates :description, presence: true
+
+  # Geocoding
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end

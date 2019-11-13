@@ -7,6 +7,10 @@ class EventsController < ApplicationController
   end
 
   def show
+    @marker = [{
+      lat: @event.latitude,
+      lng: @event.longitude
+    }]
   end
 
   def new
@@ -25,7 +29,7 @@ class EventsController < ApplicationController
   end
 
   private
-  
+
   def event_params
     params.require(:event).permit(:name, :address, :booking_time, :price, :description, :movie_id)
   end
