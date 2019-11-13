@@ -34,18 +34,64 @@
       <%= @event.booking_time.strftime("%A, %b %-d %Y, %H:%M") %>
       <h3 class="mt-3">
         <i class="fas fa-users mr-2"></i>Number of participants :
-        <%=@event.bookings.count %>
+        <%=@event.bookings.where(booked: true).count %>
       </h3>
       <div class="text-center">
       <% if user_signed_in? == false  %>
         <%= link_to 'Join', new_user_registration_path, class:
         'btn btn-primary px-5' %>
-      <% elsif current_user == @event.user || @event.bookings.where(user: current_user).exists?  %>
+      <% elsif current_user == @event.user %>
        <button type="button" class="btn btn-secondary px-5" disabled>Join</button>
+      <% elsif @event.bookings.where(user: current_user).exists? && @event.bookings.where(booked: true).exists? %>
+      <button type="button" class="btn btn-danger px-5" data-toggle="modal" data-target="#cancelModal">
+        Cancel
+      </button>
+
+      <!-- Cancel Modal -->
+      <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cancelModalLabel">Cancel Event</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure to cancel <%=@event.name.capitalize%>?
+            </div>
+            <div class="modal-footer">
+              <%= link_to 'Sure', event_booking_path(@event), method: :patch, class: 'btn btn-danger px-5' %>
+            </div>
+          </div>
+        </div>
+      </div>
       <% else %>
-       <%= link_to 'Join', event_bookings_path(@event), method: :post, class:
-        'btn btn-primary px-5' %>
-      <% end %>
+      <button type="button" class="btn btn-primary px-5" data-toggle="modal" data-target="#joinModal">
+        Join
+      </button>
+
+      <!-- Join Modal -->
+        <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="joinModalLabel">Join Event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Thank you for join <%=@event.name.capitalize%> !
+              </div>
+              <div class="modal-footer">
+                <%= link_to 'Ok', event_bookings_path(@event), method: :post, class:
+                  'btn btn-primary px-5' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
