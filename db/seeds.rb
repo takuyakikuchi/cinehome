@@ -1,9 +1,13 @@
 require "json"
 require "open-uri"
 
-keywords = ['star+wars', 'harry+potter', 'fast+and+furious', 'pokemon']
+puts 'Cleaning data'
+Movie.destroy_all
+
+keywords = ['star+wars', 'toy+story', 'pokemon', 'hungover']
 info = []
 
+puts 'Creating movies......'
 keywords.each do |key|
   url = "http://www.omdbapi.com/?i=tt3896198&apikey=c799fbe5&s=#{key}"
   data = open(url).read
@@ -16,3 +20,4 @@ info.each do |array|
     Movie.create!(name: movie["Title"], photo: movie["Poster"], genre: "Science Fiction")
   end
 end
+puts "...created #{Movie.count} movies"
