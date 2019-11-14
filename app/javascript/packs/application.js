@@ -1,7 +1,8 @@
 import "bootstrap";
+import "../plugins/init_datepicker";
 
-import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the stylesheet_pack_tag in the layout!
+import "mapbox-gl/dist/mapbox-gl.css"; // <-- you need to uncomment the stylesheet_pack_tag in the layout!
 
-import { initMapbox } from '../plugins/init_mapbox';
+import { initMapbox } from "../plugins/init_mapbox";
 
 initMapbox();
