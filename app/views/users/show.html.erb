@@ -1,26 +1,62 @@
 <div class="container">
-  <div id="profile">
-    <h2>Profile</h2>
-    <%= cl_image_tag @user.photo, height:200, width:200, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black", alt: "avatar" %>
-    <p><%= @user.name %></p>
-    <p><%= @user.email %></p>
-    <p>rating:
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-    </p>
+  <div class="card-product mt-5">
+    <%= cl_image_tag @user.photo, height:150, width:150, crop: :fill, gravity: :face, alt: "avatar" %>
+    <div class="card-product-infos ml-3">
+      <h2 class=""><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+      <p class="font-italic">"<%= @user.description %>"</p>
+      <p>rating:
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </p>
+    </div>
   </div>
 
-  <div id="hosting_event">
-    <h2>Hosting events</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ex ratione quod iure, amet. Facere totam quod consequatur ipsum, minima, aliquam vero, cumque consequuntur doloribus veritatis incidunt laborum perferendis quasi!</p>
+  <div id="comingup_event" class="mt-3">
+    <h4>Comming-up events</h4>
+    <div class="cards">
+      <% @user.events.each do |event|%>
+        <% if Time.parse("#{event.booking_time}") > Time.now %>
+          <%= link_to event_path(event), class: 'text-decoration-none text-body' do %>
+            <div class="card-movie">
+              <img src="<%= event.movie.photo %>" />
+              <div class="card-movie-infos">
+                <div>
+                  <h2><%= event.movie.name %></h2>
+                  <p><i class="far fa-clock mr-2"></i> <%= event.booking_time.strftime("%b %-d %Y, %H:%M") %></p>
+                  <p><i class="fas fa-map-marker-alt mr-2"></i><%= event.address %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <div id="joining_event">
-    <h2>Hosting events</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ex ratione quod iure, amet. Facere totam quod consequatur ipsum, minima, aliquam vero, cumque consequuntur doloribus veritatis incidunt laborum perferendis quasi!</p>
+  <div id="past_event" class="mt-3">
+    <h4>Past events</h4>
+    <div class="cards">
+      <% @user.events.each do |event|%>
+        <% if Time.parse("#{event.booking_time}") < Time.now %>
+          <%= link_to event_path(event), class: 'text-decoration-none text-body' do %>
+            <div class="card-movie">
+              <img src="<%= event.movie.photo %>" />
+              <div class="card-movie-infos">
+                <div>
+                  <h2><%= event.movie.name %></h2>
+                  <p><i class="far fa-clock mr-2"></i> <%= event.booking_time.strftime("%b %-d %Y, %H:%M") %></p>
+                  <p><i class="fas fa-map-marker-alt mr-2"></i><%= event.address %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
 </div>

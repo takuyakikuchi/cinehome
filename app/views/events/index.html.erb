@@ -19,7 +19,6 @@
       <%= link_to event_path(event), class: 'text-decoration-none text-body' do %>
         <div class="card-movie">
           <img src="<%= event.movie.photo %>" />
-          <%# cl_image_tag event.movie.photo %>
           <div class="card-movie-infos">
             <div>
               <h2><%= event.movie.name %></h2>
