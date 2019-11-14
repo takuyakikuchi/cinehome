@@ -1,0 +1,27 @@
+<div class="container">
+  <div id="profile">
+    <h2>Profile</h2>
+    <%= cl_image_tag @user.photo, height:200, width:200, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black", alt: "avatar" %>
+    <p><%= @user.name %></p>
+    <p><%= @user.email %></p>
+    <p>rating:
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </p>
+  </div>
+
+  <div id="hosting_event">
+    <h2>Hosting events</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ex ratione quod iure, amet. Facere totam quod consequatur ipsum, minima, aliquam vero, cumque consequuntur doloribus veritatis incidunt laborum perferendis quasi!</p>
+  </div>
+
+  <div id="joining_event">
+    <h2>Hosting events</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ex ratione quod iure, amet. Facere totam quod consequatur ipsum, minima, aliquam vero, cumque consequuntur doloribus veritatis incidunt laborum perferendis quasi!</p>
+  </div>
+
+</div>
+

@@ -23,7 +23,7 @@
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><%= link_to "Profile", "#", class: "dropdown-item" %></a>
+            <a class="dropdown-item" href="#"><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></a>
             <a class="dropdown-item" href="#"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></a>
                   <% else %>
               <li class="nav-item">
