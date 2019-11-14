@@ -1,13 +1,4 @@
 <div class="container">
-<h1 class="text-center">Create a new event</h1>
-
-<%= simple_form_for [@event] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :booking_time, as: :string, required: false, input_html: {class: "datepicker"} %>
-  <%= f.input :price %>
-  <%= f.input :description %>
-  <%= f.association :movie %>
-  <%= f.submit "Add Event", class: "btn btn-primary" %>
-<% end %>
+  <h1 class="text-center">Create a new event</h1>
+  <%= render 'form' %>
 </div>
