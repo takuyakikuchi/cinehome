@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   validates :booking_time, presence: true
   validates :price, presence: true
   validates :description, presence: true
+  validates :max, presence: true
 
   # Geocoding
   geocoded_by :address

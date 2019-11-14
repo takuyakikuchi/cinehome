@@ -5,6 +5,7 @@
   <%= f.input :name %>
   <%= f.input :address %>
   <%= f.input :booking_time, as: :string, required: false, input_html: {class: "datepicker"} %>
+  <%= f.input :max, numericality: { greater_than: 1 } %>
   <%= f.input :price %>
   <%= f.input :description %>
   <%= f.association :movie %>
