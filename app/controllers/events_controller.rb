@@ -18,6 +18,8 @@ class EventsController < ApplicationController
       lat: @event.latitude,
       lng: @event.longitude
     }]
+    @review = Review.new(user: current_user)
+    @reviews = @event.reviews
   end
 
   def new
