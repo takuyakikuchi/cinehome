@@ -1,17 +1,44 @@
-.star-rating {
-  position: relative;
-  width: 5em;
-  height: 1em;
-  font-size: 25px;
+// .rating {
+//   transform: translate(-50%,-50%);
+//   display:flex;
+// }
 
-}
-.star-rating-front {
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  color: #ffcc33;
-}
-.star-rating-back {
-  color: #ccc;
-}
+// .rating input{
+
+// }
+
+// .rating label {
+//   display:block;
+//   cursor:pointer
+// }
+
+// .rating label:bedore {
+//   content: '\f005';
+//   font-family: FontAwsome;
+//   position:relative;
+//   display:block;
+//   font-size:50px;
+//   color:#101010;
+// }
+
+// .rating label:after {
+//   content: '\f005';
+//   font-family: FontAwsome;
+//   position:relative;
+//   display:block;
+//   font-size:50px;
+//   color:#1f9cff;
+//   opacity:1;
+//   transition:0.5s;
+//   text-shadow:0 2px 5px rgba(0,0,0, 0.5);
+// }
+
+// .rating label:hover:after{
+//   opacity:1;
+// }
+// .rating label:hover~label:after{
+
+// }
+// .rating input:checked~label:after{
+
+// }

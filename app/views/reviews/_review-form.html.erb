@@ -1,0 +1,15 @@
+<div>
+<%= form_for [event, review] do |f| %>
+  <div class="rating" style="color:#ffda1f;">
+    <%= f.radio_button :rating, 1 %> <i class="fa fa-star"></i>
+    <%= f.radio_button :rating, 2 %> <i class="fa fa-star"></i><i class="fa fa-star"></i>
+    <%= f.radio_button :rating, 3 %> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+    <%= f.radio_button :rating, 4 %> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+    <%= f.radio_button :rating, 5 %> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+  </div>
+  <%= f.text_area :content, class: "align-items-stretch"%>
+  <div class="actions">
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

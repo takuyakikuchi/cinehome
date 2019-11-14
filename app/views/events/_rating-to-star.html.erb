@@ -1,0 +1,5 @@
+<% counter = 0 %>
+<% 5.times do %>
+<i class="<%= rating > counter ? 'fa fa-star' : 'far fa-star' %>" style="color:#ffda1f;"></i>
+<% counter += 1 %>
+<% end %>

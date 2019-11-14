@@ -17,7 +17,7 @@
       <h5 class="mt-3">Hosted by :</h5>
       <div class="d-flex align-items-center my-3">
         <%= cl_image_tag @event.user.photo, height:50, width:50, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
-        <h5 class="ml-2"><%=@event.user.name.capitalize%></h5>
+        <h5 class="ml-2"><%=@event.user.name.capitalize%>  :  <%= render 'user-rating' %> </h5>
       </div>
 
       <div class="col-6">
@@ -33,20 +33,24 @@
 
         <!--Review function-->
     <div clas="col-6">
-      <div class="container mb-5">
+      <div class="container">
         <% if user_signed_in? == false  %>
           <p>Please log in to see the reviews</p>
         <% elsif current_user != @event.user %>
-         <%= render 'reviews/new-review', event: @event, review: @review %>
-            <div class="ml-3">
+        <p class="text-center">Add a review</p>
+        <div class="ml-4">
+          <%= render 'reviews/review-form', event: @event, review: @review %>
+        </div>
+            <div class="container ml-2 mt-3">
               <% @reviews.each do |review| %>
-              <p> <%= cl_image_tag User.find(review.user_id).photo, height:30, width:30, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%> <%= review.user.name %> </p>
-              <p> Rating : <%= review.rating %> </p>
-              <p> Content:</p>
-              <p><%= review.content %> </p>
+              <p> <%= cl_image_tag User.find(review.user_id).photo, height:30, width:30, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>  <%= review.user.name %> </p>
+              <p> Rating : <%= render 'rating-to-star', rating: review.rating %></p>
+              <p> <%= review.content %></p>
               <% if review.user == current_user%>
-                <button type="button" class="btn btn-primary px-3 mb-3 mr-3" data-toggle="modal" data-target="#editReviewModal-<%= review.id %>">Edit</button>
-                <button type="button" class="btn btn-danger px-3 mb-3 ml-3" data-toggle="modal" data-target="#deleteReviewModal-<%= review.id %>">Delete</button>
+                <div class ="mr-0">
+                  <i class="fas fa-edit" data-toggle="modal" data-target="#editReviewModal-<%= review.id %>"></i>
+                  <i class="fas fa-trash align-content-end"  data-toggle="modal" data-target="#deleteReviewModal-<%= review.id %>"></i>
+                </div>
                 <!--edit modal -->
                 <div class="modal fade" id="editReviewModal-<%= review.id %>" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -58,7 +62,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <%= render 'reviews/edit-review', event: @event, review: review %>
+                        <%= render 'reviews/review-form', event: @event, review: review %>
                       </div>
                     </div>
                   </div>
@@ -86,8 +90,9 @@
                 <% end %>
               <% end %>
               <% else %>
-                <!--delete modal end-->
-            </div>
+
+
+            <!--delete modal end-->
             <div class="ml-3">
               <% @reviews.each do |review| %>
                 <p> <%= cl_image_tag User.find(review.user_id).photo, height:30, width:30, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%> <%= review.user.name %> </p>

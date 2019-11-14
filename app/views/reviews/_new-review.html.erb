@@ -1,9 +1,0 @@
-<div class="container">
-<p class="text-center">Add a review</p>
-
-<%= simple_form_for [event, review] do |f| %>
-  <%= f.input :rating %>
-  <%= f.input :content %>
-  <%= f.submit "Add review", class: "btn btn-primary" %>
-<% end %>
-</div>
