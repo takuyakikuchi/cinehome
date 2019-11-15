@@ -10,7 +10,7 @@
   </div>
 
   <div id="comingup_event" class="mt-3">
-    <h4>Comming-up events</h4>
+    <h5>Comming-up events</h5>
     <div class="cards">
       <% @user.events.each do |event|%>
         <% if Time.parse("#{event.booking_time}") > Time.now %>
@@ -32,7 +32,7 @@
   </div>
 
   <div id="past_event" class="mt-3">
-    <h4>Past events</h4>
+    <h5>Past events</h5>
     <div class="cards">
       <% @user.events.each do |event|%>
         <% if Time.parse("#{event.booking_time}") < Time.now %>
