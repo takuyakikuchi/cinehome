@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   def index
     if params.has_key?(:range_search)
       @events = Event.near(params[:range_search][:location], params[:range_search][:range])
-    elsif params[:search][:query].present?
+    elsif params.dig(:search,:query).present?
       @events = Event.joins(:movie).where(movies: {genre: params[:search][:query]})
     else 
       @events = Event.all
