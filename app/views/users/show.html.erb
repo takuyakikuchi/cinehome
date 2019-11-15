@@ -1,11 +1,15 @@
 <div class="container">
   <div class="card-product mt-5">
-    <%= cl_image_tag @user.photo, height:150, width:150, crop: :fill, gravity: :face, alt: "avatar" %>
+    <div class="card-product-pic">
+      <%= cl_image_tag @user.photo, height:150, width:150, crop: :fill, gravity: :face, radius: :max, alt: "avatar" %>
+    </div>
     <div class="card-product-infos ml-3">
       <h2 class=""><%= @user.name %></h2>
-      <p><%= @user.email %></p>
-      <p class="font-italic">"<%= @user.description %>"</p>
-      <p>rating: <%= render '/users/user-rating' %></p>
+      <p><i class="far fa-envelope"></i> <%= @user.email %></p>
+      <p><%= render '/users/user-rating' %></p>
+      <div class="description border-top my-3">
+        <p class="font-italic p-2">"<%= @user.description %>"</p>
+      </div>
     </div>
   </div>
 
