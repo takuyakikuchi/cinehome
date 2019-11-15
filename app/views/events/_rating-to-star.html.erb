@@ -1,5 +1,11 @@
 <% counter = 0 %>
 <% 5.times do %>
-<i class="<%= rating > counter ? 'fa fa-star' : 'far fa-star' %>" style="color:#ffda1f;"></i>
+  <div class="star" style="display:inline">
+  <% if rating > counter %>
+  <i class='fa fa-star' style="color:#FDCA36;" ></i>
+  <% else %>
+  <i class='fa fa-star' style="color:#BFBFBF" ></i>
+  <% end %>
+  </div>
 <% counter += 1 %>
 <% end %>

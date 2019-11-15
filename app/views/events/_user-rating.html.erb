@@ -9,6 +9,12 @@
 <% rate = (sum/counter.to_i) %>
 <% star_counter = 0 %>
 <% 5.times do %>
-  <i class="<%= rate > star_counter ? 'fa fa-star' : 'far fa-star' %>" style="color:#ffda1f;"></i>
+  <div class="star" style="display:inline">
+  <% if rate > star_counter %>
+  <i class='fa fa-star' style="color:#FDCA36;" ></i>
+  <% else %>
+  <i class='fa fa-star' style="color:#BFBFBF" ></i>
+  <% end %>
+  </div>
   <% star_counter += 1 %>
 <% end %>
