@@ -5,28 +5,27 @@
       <div class="d-flex border shadow rounded">
         <%= image_tag @event.movie.photo, alt: "poster", width: 200, class:
         'rounded' %>
-        <div class="ml-3">
-          <h3 class="mt-2">Description</h3>
-          <p><%=@event.description.capitalize %></p>
-          <p>Movie : <%= @event.movie.name %></p>
+        <div class="mx-3 my-3">
+          <h5><%= @event.movie.name %></h5>
           <p>Genre : <%= @event.movie.genre %></p>
+          <p><i class="far fa-calendar-alt mr-2"></i> <%= @event.booking_time.strftime("%A, %b %-d %Y, %H:%M") %></p>
+          <p class="mt-3">Hosted by :</p>
+          <div class="d-flex align-items-center my-3">
+            <%= link_to user_path(@event.user) do %>
+              <%= cl_image_tag @event.user.photo, height:40, width:40, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
+            <% end %>
+            <p class="ml-2 mb-0"><%=@event.user.name.capitalize%></p>
+            <div>
+              <%= render 'user-rating' %>
+            </div>
+          </div>
+          <p class="mt-3">Participants :</p>
+           <% @event.bookings.where(booked: true).each do |booking| %>
+            <%= link_to user_path(booking.user) do %>
+              <%= cl_image_tag booking.user.photo, height:40, width:40, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
+            <% end %>
+          <% end %>
         </div>
-      </div>
-
-      <h5 class="mt-3">Hosted by :</h5>
-      <div class="d-flex align-items-center my-3">
-        <%= cl_image_tag @event.user.photo, height:50, width:50, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
-        <h5 class="ml-2"><%=@event.user.name.capitalize%>  :  <%= render 'user-rating' %> </h5>
-      </div>
-
-      <div class="col-6">
-      <p class="mt-3"><i class="fas fa-map-marker-alt"></i> Address</p>
-      <%= @event.address %>
-      <p class="mt-3"><i class="far fa-calendar-alt mr-2"></i>Date</p>
-      <%= @event.booking_time.strftime("%A, %b %-d %Y, %H:%M") %>
-      <% @event.bookings.where(booked: true).each do |booking| %>
-        <%= cl_image_tag booking.user.photo, height:50, width:50, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
-      <% end %>
       </div>
     </div>
 
@@ -36,13 +35,16 @@
         <% if user_signed_in? == false  %>
           <p>Please log in to see the reviews</p>
         <% elsif current_user != @event.user %>
-        <p class="text-center">Add a review</p>
+        <h3 class="text-center">Add a review</h3>
         <div class="ml-4">
           <%= render 'reviews/review-form', event: @event, review: @review %>
         </div>
             <div class="container ml-2 mt-3">
               <% @reviews.each do |review| %>
-              <p> <%= cl_image_tag User.find(review.user_id).photo, height:30, width:30, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>  <%= review.user.name %> </p>
+                <%= link_to user_path(review.user) do %>
+                  <%= cl_image_tag User.find(review.user_id).photo, height:30, width:30, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>  
+                <% end %>
+              <%= review.user.name %>
               <p> Rating : <%= render 'rating-to-star', rating: review.rating %></p>
               <p> <%= review.content %></p>
               <% if review.user == current_user%>
