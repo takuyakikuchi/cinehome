@@ -3,7 +3,14 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @events = Event.all
+    if params.has_key?(:range_search)
+      @events = Event.near(params[:range_search][:location], params[:range_search][:range])
+    elsif params[:query].present?
+      @events = Event.joins(:movie).where(movie: {genre: params[:search][:query]})
+    else 
+      @events = Event.all
+    end
+
   end
 
   def show
@@ -11,6 +18,8 @@ class EventsController < ApplicationController
       lat: @event.latitude,
       lng: @event.longitude
     }]
+    @review = Review.new(user: current_user)
+    @reviews = @event.reviews
   end
 
   def new

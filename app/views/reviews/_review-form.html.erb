@@ -1,0 +1,7 @@
+<div>
+<%= simple_form_for [event, review] do |f| %>
+  <%= f.input :rating, collection: 1..5 %>
+  <%= f.text_area :content, class: "align-items-stretch w-100"%>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+</div>

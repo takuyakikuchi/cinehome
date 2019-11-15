@@ -1,0 +1,20 @@
+<% reviews = Review.all.where(event_id: Event.all.where(user_id: @event.user.id).ids) %>
+<% counter = 0 %>
+<% sum = 0 %>
+<% reviews.each do |review| %>
+<% sum += review[:rating] %>
+<% counter += 1 %>
+<% end %>
+
+<% rate = (sum/counter.to_i) %>
+<% star_counter = 0 %>
+<% 5.times do %>
+  <div class="star" style="display:inline">
+  <% if rate > star_counter %>
+  <i class='fa fa-star' style="color:#FDCA36;" ></i>
+  <% else %>
+  <i class='fa fa-star' style="color:#BFBFBF" ></i>
+  <% end %>
+  </div>
+  <% star_counter += 1 %>
+<% end %>
