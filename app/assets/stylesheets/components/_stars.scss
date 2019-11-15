@@ -1,0 +1,44 @@
+// .rating {
+//   transform: translate(-50%,-50%);
+//   display:flex;
+// }
+
+// .rating input{
+
+// }
+
+// .rating label {
+//   display:block;
+//   cursor:pointer
+// }
+
+// .rating label:bedore {
+//   content: '\f005';
+//   font-family: FontAwsome;
+//   position:relative;
+//   display:block;
+//   font-size:50px;
+//   color:#101010;
+// }
+
+// .rating label:after {
+//   content: '\f005';
+//   font-family: FontAwsome;
+//   position:relative;
+//   display:block;
+//   font-size:50px;
+//   color:#1f9cff;
+//   opacity:1;
+//   transition:0.5s;
+//   text-shadow:0 2px 5px rgba(0,0,0, 0.5);
+// }
+
+// .rating label:hover:after{
+//   opacity:1;
+// }
+// .rating label:hover~label:after{
+
+// }
+// .rating input:checked~label:after{
+
+// }
