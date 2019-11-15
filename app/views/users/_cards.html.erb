@@ -1,0 +1,16 @@
+<div class="cards">
+  <% @user.events.each do |event|%>
+    <%= link_to event_path(event), class: 'text-decoration-none text-body' do %>
+      <div class="card-movie">
+        <img src="<%= event.movie.photo %>" />
+        <div class="card-movie-infos">
+          <div>
+            <h2><%= event.movie.name %></h2>
+            <p><i class="far fa-clock mr-2"></i> <%= event.booking_time.strftime("%b %-d %Y, %H:%M") %></p>
+            <p><i class="fas fa-map-marker-alt mr-2"></i><%= event.address %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
