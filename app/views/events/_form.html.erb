@@ -5,6 +5,6 @@
   <%= f.input :capacity, collection: 1..20 %>
   <%= f.input :price %>
   <%= f.input :description %>
-  <%= f.association :movie %>
+  <%= f.association :movie, input_html: { class: 'js-example-basic-single' } %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
