@@ -9,7 +9,6 @@ class Event < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
   validates :booking_time, presence: true
-  validates :price, presence: true
   validates :description, presence: true
   validates :capacity, presence: true, numericality: { greater_than: 1 }
 

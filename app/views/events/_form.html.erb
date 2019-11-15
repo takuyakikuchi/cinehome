@@ -3,7 +3,6 @@
   <%= f.input :address %>
   <%= f.input :booking_time, as: :string, required: false, input_html: {class: "datepicker"} %>
   <%= f.input :capacity, collection: 1..20 %>
-  <%= f.input :price %>
   <%= f.input :description %>
   <%= f.association :movie, input_html: { class: 'js-example-basic-single' } %>
   <%= f.submit class: "btn btn-primary" %>
