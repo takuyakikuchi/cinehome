@@ -5,11 +5,11 @@
       <div class="d-flex border shadow rounded">
         <%= image_tag @event.movie.photo, alt: "poster", width: 200, class:
         'rounded' %>
-        <div class="mx-3 my-3">
+        <div class="p-4">
           <h5><%= @event.movie.name %></h5>
           <p>Genre : <%= @event.movie.genre %></p>
           <p><i class="far fa-calendar-alt mr-2"></i> <%= @event.booking_time.strftime("%A, %b %-d %Y, %H:%M") %></p>
-          <p class="mt-3">Hosted by :</p>
+          <p class="mt-3"><i class="fas fa-portrait"></i> Hosted by :</p>
           <div class="d-flex align-items-center my-3">
             <%= link_to user_path(@event.user) do %>
               <%= cl_image_tag @event.user.photo, height:40, width:40, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
@@ -19,7 +19,7 @@
               <%= render 'user-rating' %>
             </div>
           </div>
-          <p class="mt-3">Participants :</p>
+          <p class="mt-3"><i class="fas fa-users"></i> Participants :</p>
            <% @event.bookings.where(booked: true).each do |booking| %>
             <%= link_to user_path(booking.user) do %>
               <%= cl_image_tag booking.user.photo, height:40, width:40, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>
@@ -35,27 +35,29 @@
         <% if user_signed_in? == false  %>
           <p>Please log in to see the reviews</p>
         <% elsif current_user != @event.user %>
-        <h3 class="text-center">Add a review</h3>
+        <h3 class="text-center mt-5">Add a review</h3>
         <div class="ml-4">
           <%= render 'reviews/review-form', event: @event, review: @review %>
         </div>
             <div class="container ml-2 mt-3">
               <% @reviews.each do |review| %>
+              <div class="border-top py-3">
                 <%= link_to user_path(review.user) do %>
-                  <%= cl_image_tag User.find(review.user_id).photo, height:30, width:30, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>  
+                  <%= cl_image_tag User.find(review.user_id).photo, height:40, width:40, crop: :fill, gravity: :face, radius: :max, border: "2px_solid_black"%>  
                 <% end %>
               <%= review.user.name %>
-              <p> Rating : <%= render 'rating-to-star', rating: review.rating %></p>
+              <p><%= render 'rating-to-star', rating: review.rating %></p>
               <p> <%= review.content %></p>
               <% if review.user == current_user%>
                 <div class ="text-right">
-                  <i class="fas fa-edit" data-toggle="modal" data-target="#editReviewModal-<%= review.id %>"></i>
-                  <i class="fas fa-trash align-content-end"  data-toggle="modal" data-target="#deleteReviewModal-<%= review.id %>"></i>
+                  <i class="fas fa-edit text-warning" data-toggle="modal" data-target="#editReviewModal-<%= review.id %>"></i>
+                  <i class="fas fa-trash text-danger"  data-toggle="modal" data-target="#deleteReviewModal-<%= review.id %>"></i>
                 </div>
+              </div>
                 <!--edit modal -->
                 <div class="modal fade" id="editReviewModal-<%= review.id %>" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" id="edit-modal-bg">
                       <div class="modal-header">
                         <h5 class="modal-title" id="joinModalLabel">Edit a review</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -72,18 +74,15 @@
                 <!--delete modal-->
                 <div class="modal fade" id="deleteReviewModal-<%= review.id %>" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="joinModalLabel">Edit a review</h5>
+                    <div class="modal-content" id="cancel-modal-bg">
+                        <div class="modal-body">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
-                      </div>
-                        <div class="modal-body">
-                          Are you sure to delete your comment ?
+                        <p class="text-center mt-5">Are you sure to delete your comment ?</p>
                         </div>
-                        <div class="modal-footer">
-                          <%= link_to 'Sure', event_review_path(review), method: :delete, class: 'btn btn-danger px-5' %>
+                        <div class="modal-footer justify-content-center">
+                          <%= link_to 'Sure', event_review_path(review), method: :delete, class: 'btn btn-light px-5' %>
                         </div>
                     </div>
                   </div>
