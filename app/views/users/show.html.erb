@@ -5,13 +5,7 @@
       <h2 class=""><%= @user.name %></h2>
       <p><%= @user.email %></p>
       <p class="font-italic">"<%= @user.description %>"</p>
-      <p>rating:
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-      </p>
+      <p>rating: <%= render '/users/user-rating' %></p>
     </div>
   </div>
 
